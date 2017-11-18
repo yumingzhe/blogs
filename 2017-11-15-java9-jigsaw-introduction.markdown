@@ -12,7 +12,15 @@ published: true
 Java 平台模块化从提出到出现在我们面前，可谓命途多舛，早在 2005 年 Java 7 时代，就以 [JSR 277: Java Module System](https://jcp.org/en/jsr/detail?id=277) 规范的形式提出了，号称要在 Java 8 中出现，给 Java 带来历史上可以与 Java 5 相媲美的一次重要里程碑式的更新，之后又被 [JSR 376: Java Platform Module System](https://jcp.org/en/jsr/detail?id=376) 规范所取代，可是由于该项目进度缓慢，困难重重，导致了 Java 8 发布时间一拖再拖，最终等不起了只好先把 Jigsaw 功能又延期到 Java 9，先将 Java 8 发布出来供大家使用，虽然没有 Jigsaw 特性，但 Java 8 也是一款非常重量级的更新，它带来了 Lambda、Stream 和 [改进的日期时间 API](https://mingzhe.org/blog/2016/12/25/java8-new-date-api) 等功能特性，让程序员享受到函数式和流式编程的乐趣。而到了后 Java 8 时代，眼看 Java 9 的发布截止日期马上就要到了，可是 Jigsaw 项目仍然被许多问题困扰，如设计上的问题，过多的 bug 还没解决，因此又延期了，最终 Java 平台首席架构师 [Mark Reinhold](https://mreinhold.org) 下了最后通牒，要求 Java 9 必须在 2017 年 9 月份发布，在还有半年就要发布前，Jigsaw 项目发布了一版 Public Review 版，但是遭到了IBM 和 Redhat 的反对，遭到反对的原因在于他们认为模块化破坏了现有系统的设计原则，会导致现有系统迁移到新的模块化系统上的开销会非常巨大(其实是为了各自的利益所考虑的，这两家公司都有自己的中间件，而为了遵循统一的标准可能改动会比较大)，具体信息请看这篇文章 [Concerns Regarding Jigsaw](https://developer.jboss.org/blogs/scott.stark/2017/04/14/critical-deficiencies-in-jigsawjsr-376-java-platform-module-system-ec-member-concerns)。在与这两家经过协商和妥协后，Java 模块化系统终于在 2017 年 09 月 21 日[发布](https://mreinhold.org/blog/jigsaw-complete)了，模块化在经历了多重困难后终于与我们相见。下面我们将了解一些最基本的概念，实验环境：Java 9.0.1。
 
 ### 模块是什么
-我们都知道在 Java 9 之前代码都是按包进行组织的，而**模块则是在包的概念上又增加了一个更高层的抽象，它将多个逻辑上、功能上相关的包以及相关的资源文件，如 xml 文件等组织成一个可重用的逻辑单元，这个逻辑单元就称为模块**。通常情况下一个模块包含着一个**模块描述符文件(module descriptor)用来指定模块的名字、依赖(需要注意的是每个模块必须显式得声明其依赖)、对外可使用的包(其余的包则对外不可见)、模块提供的服务、模块使用的服务以及允许哪些模块可以对其进行反射等配置信息**。
+我们都知道在 Java 9 之前代码都是按包进行组织的，而**模块则是在包的概念上又增加了一个更高层的抽象，它将多个逻辑上、功能上相关的包以及相关的资源文件，如 xml 文件等组织成一个可重用的逻辑单元，这个逻辑单元就称为模块**。通常情况下一个模块包含着一个**模块描述符文件(module descriptor)用来指定模块的名字、依赖(需要注意的是每个模块必须显式得声明其依赖)、对外可使用的包(其余的包则对外不可见)、模块提供的服务、模块使用的服务以及允许哪些模块可以对其进行反射等配置信息**。模块最终都会打包成 jar 包来分发和使用的，那么模块打包的 jar 包和普通的 jar 包有什么区别呢？模块和普通的 jar 包几乎是一样的，只不过比普通的 jar 包在根目录下多了一个模块描述符文件—— module-info.class而已。
+
+### 模块的类型
+Java 9 的模块可以分为 3 种类型
+
+#### 1.具名模块(Named Module)
+具名模块也称为应用模块(Application Module)
+
+#### 
 
 <!--more-->
 
