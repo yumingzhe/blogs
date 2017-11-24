@@ -19,4 +19,4 @@ categories:
 
 其 UML 图如下所示：
 
-从上图可以看出
+从上图可以看出 IObserver 接口
